@@ -3,8 +3,11 @@ package com.teenwolf3301.stormotiontesttask
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.teenwolf3301.stormotiontesttask.databinding.ActivityMainBinding
+import com.teenwolf3301.stormotiontesttask.ui.list.ListFragment
 import com.teenwolf3301.stormotiontesttask.utility.APP_ACTIVITY
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var mBinding: ActivityMainBinding
