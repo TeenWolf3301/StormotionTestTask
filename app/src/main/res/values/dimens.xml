@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="default_font_size">14sp</dimen>
+    <dimen name="extra_font_size">16sp</dimen>
+
+    <dimen name="app_margin">16dp</dimen>
+    <dimen name="app_small_margin">8dp</dimen>
+    <dimen name="app_extra_margin">32dp</dimen>
+    <dimen name="app_vertical_margin">25dp</dimen>
+</resources>

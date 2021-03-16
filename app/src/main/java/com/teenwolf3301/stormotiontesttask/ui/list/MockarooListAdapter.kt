@@ -11,14 +11,14 @@ import com.teenwolf3301.stormotiontesttask.databinding.ListHeaderItemBinding
 import com.teenwolf3301.stormotiontesttask.databinding.ListItemBinding
 import com.teenwolf3301.stormotiontesttask.utility.TYPE_HEADER
 import com.teenwolf3301.stormotiontesttask.utility.TYPE_ITEM
+import com.teenwolf3301.stormotiontesttask.utility.onItemClick
 
 class MockarooListAdapter() :
 
     ListAdapter<MockarooData, RecyclerView.ViewHolder>(MockarooItemCallback()) {
 
-    override fun getItemViewType(position: Int): Int {
-        return if (getItem(position).isHeader) TYPE_HEADER else TYPE_ITEM
-    }
+    override fun getItemViewType(position: Int): Int =
+        if (getItem(position).isHeader) TYPE_HEADER else TYPE_ITEM
 
     inner class MockarooViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -63,6 +63,9 @@ class MockarooListAdapter() :
                 (holder as MockarooHeaderViewHolder).bind(currentItem)
             } else {
                 (holder as MockarooViewHolder).bind(currentItem)
+                holder.itemView.setOnClickListener {
+                    onItemClick(currentItem.id)
+                }
             }
         }
     }

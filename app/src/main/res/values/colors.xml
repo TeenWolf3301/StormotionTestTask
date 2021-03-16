@@ -9,9 +9,10 @@
     <color name="blue">#50BEC9</color>
 
     <color name="black">#FF000000</color>
-    <color name="grey">#66000000</color>
+    <color name="grey">#999999</color>
     <color name="white">#FFFFFFFF</color>
     <color name="darker_grey">#323232</color>
+    <color name="softer_grey">#e3e3e3</color>
 
     <color name="start_gradient">#EAD2B0</color>
     <color name="end__gradient">#DA9C80</color>
