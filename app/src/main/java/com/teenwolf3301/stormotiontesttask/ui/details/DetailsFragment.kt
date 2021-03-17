@@ -54,6 +54,11 @@ class DetailsFragment : Fragment() {
         }
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
     private fun updateUI() {
         val item = args.data
         binding.apply {
@@ -64,19 +69,16 @@ class DetailsFragment : Fragment() {
                 crossfade(true)
                 transformations(CircleCropTransformation())
             }
+            progressVideo.visibility = View.VISIBLE
             detailsVideo.apply {
                 setVideoPath(item.video)
                 setOnPreparedListener {
                     start()
                     it.isLooping = true
+                    progressVideo.visibility = View.GONE
                 }
             }
         }
         APP_ACTIVITY.supportActionBar?.title = item.title
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
