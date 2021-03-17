@@ -11,9 +11,8 @@ import com.teenwolf3301.stormotiontesttask.databinding.ListHeaderItemBinding
 import com.teenwolf3301.stormotiontesttask.databinding.ListItemBinding
 import com.teenwolf3301.stormotiontesttask.utility.TYPE_HEADER
 import com.teenwolf3301.stormotiontesttask.utility.TYPE_ITEM
-import com.teenwolf3301.stormotiontesttask.utility.onItemClick
 
-class MockarooListAdapter() :
+class MockarooListAdapter(private val listener: OnItemClickListener) :
 
     ListAdapter<MockarooData, RecyclerView.ViewHolder>(MockarooItemCallback()) {
 
@@ -22,6 +21,18 @@ class MockarooListAdapter() :
 
     inner class MockarooViewHolder(private val binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
+        init {
+            binding.root.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val item = getItem(position)
+                    if (item != null) {
+                        listener.onItemClick(item)
+                    }
+                }
+            }
+        }
 
         fun bind(data: MockarooData) {
             binding.apply {
@@ -63,10 +74,11 @@ class MockarooListAdapter() :
                 (holder as MockarooHeaderViewHolder).bind(currentItem)
             } else {
                 (holder as MockarooViewHolder).bind(currentItem)
-                holder.itemView.setOnClickListener {
-                    onItemClick(currentItem.id)
-                }
             }
         }
+    }
+
+    interface OnItemClickListener {
+        fun onItemClick(data: MockarooData)
     }
 }

@@ -1,5 +1,9 @@
 package com.teenwolf3301.stormotiontesttask.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class MockarooData(
     val id: String?,
     val isHeader: Boolean,
@@ -9,4 +13,4 @@ data class MockarooData(
     val description: String?,
     val image: String?,
     val video: String?
-)
+) : Parcelable

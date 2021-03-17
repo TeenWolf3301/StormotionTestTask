@@ -6,5 +6,5 @@ import retrofit2.http.GET
 interface MockarooApi {
 
     @GET("/mockaroo_data?key=da29ca90")
-    suspend fun dataList(): List<MockarooData>
+    suspend fun getData(): List<MockarooData>
 }

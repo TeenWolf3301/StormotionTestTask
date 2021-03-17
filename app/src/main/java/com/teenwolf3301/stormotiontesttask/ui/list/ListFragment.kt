@@ -6,16 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teenwolf3301.stormotiontesttask.data.MockarooData
 import com.teenwolf3301.stormotiontesttask.databinding.FragmentListBinding
+import com.teenwolf3301.stormotiontesttask.utility.APP_ACTIVITY
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), MockarooListAdapter.OnItemClickListener {
 
     private var _binding: FragmentListBinding? = null
-    private var adapter: MockarooListAdapter? = MockarooListAdapter()
+    private var adapter: MockarooListAdapter? = MockarooListAdapter(this)
 
     private val listViewModel: ListViewModel by lazy {
         ViewModelProvider(this).get(ListViewModel::class.java)
@@ -39,8 +41,8 @@ class ListFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        listViewModel.list.observe(viewLifecycleOwner, {
-            updateUI(it)
+        listViewModel.list.observe(viewLifecycleOwner, { list ->
+            updateUI(list)
         })
     }
 
@@ -49,8 +51,25 @@ class ListFragment : Fragment() {
         _binding = null
     }
 
-    private fun updateUI(data: List<MockarooData>) {
-        adapter!!.submitList(data)
-        binding.recyclerList.adapter = adapter
+    private fun updateUI(list: List<MockarooData>) {
+        APP_ACTIVITY.title = "List"
+        if (list.isNotEmpty()) {
+            adapter!!.submitList(list)
+            binding.apply {
+                recyclerList.visibility = View.VISIBLE
+                recyclerList.adapter = adapter
+                emptyListText.visibility = View.GONE
+            }
+        } else {
+            binding.apply {
+                recyclerList.visibility = View.GONE
+                emptyListText.visibility = View.VISIBLE
+            }
+        }
+    }
+
+    override fun onItemClick(data: MockarooData) {
+        val action = ListFragmentDirections.actionListFragment2ToDetailsFragment(data)
+        findNavController().navigate(action)
     }
 }

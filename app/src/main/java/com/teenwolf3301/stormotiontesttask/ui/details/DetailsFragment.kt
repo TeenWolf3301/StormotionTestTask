@@ -1,17 +1,29 @@
 package com.teenwolf3301.stormotiontesttask.ui.details
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
+import coil.load
+import coil.transform.CircleCropTransformation
+import com.teenwolf3301.stormotiontesttask.R
 import com.teenwolf3301.stormotiontesttask.databinding.FragmentDetailsBinding
-import com.teenwolf3301.stormotiontesttask.utility.ARG_ITEM_ID
+import com.teenwolf3301.stormotiontesttask.utility.APP_ACTIVITY
 
 class DetailsFragment : Fragment() {
 
+    private val args by navArgs<DetailsFragmentArgs>()
+
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,28 +36,47 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.itemTitle.text = "Title"
-        binding.detailsVideo.apply {
-            setVideoPath("https://law.duke.edu/cspd/contest/videos/Framed-Contest_Documentaries-and-You.mp4")
-            start()
+        updateUI()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.details_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.settings -> {
+                Toast.makeText(context, "Settings", Toast.LENGTH_SHORT).show()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
+    }
 
-
+    private fun updateUI() {
+        val item = args.data
+        binding.apply {
+            itemTitle.text = item.title
+            itemSubtitle.text = item.subtitle
+            detailsDescription.text = item.description
+            itemImage.load(item.image) {
+                crossfade(true)
+                transformations(CircleCropTransformation())
+            }
+            detailsVideo.apply {
+                setVideoPath(item.video)
+                setOnPreparedListener {
+                    start()
+                    it.isLooping = true
+                }
+            }
+        }
+        APP_ACTIVITY.title = item.title
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        fun newInstance(itemId: String?): DetailsFragment {
-            val args = Bundle().apply {
-                putSerializable(ARG_ITEM_ID, itemId)
-            }
-            return DetailsFragment().apply {
-                arguments = args
-            }
-        }
     }
 }
