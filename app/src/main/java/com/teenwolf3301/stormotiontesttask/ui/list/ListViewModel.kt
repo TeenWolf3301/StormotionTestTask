@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.teenwolf3301.stormotiontesttask.data.MockarooData
 import com.teenwolf3301.stormotiontesttask.data.MockarooRepository
+import com.teenwolf3301.stormotiontesttask.utility.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -18,15 +19,22 @@ class ListViewModel @Inject constructor(
 ) :
     AndroidViewModel(application) {
 
-    private val _list = MutableLiveData<List<MockarooData>>()
-    val list: LiveData<List<MockarooData>>
+    private val _list = MutableLiveData<Resource<List<MockarooData>>>()
+    val list: LiveData<Resource<List<MockarooData>>>
         get() = _list
 
     init {
-        loadData()
+        getData()
     }
 
-    private fun loadData() = viewModelScope.launch {
-        _list.value = repository.getData()
+    private fun getData() = viewModelScope.launch {
+        _list.postValue(Resource.loading(null))
+        try {
+            repository.getData().let {
+                if (it.isNotEmpty()) _list.postValue(Resource.success(it))
+            }
+        } catch (exception: Exception) {
+            _list.postValue(Resource.error(exception.toString(), null))
+        }
     }
 }

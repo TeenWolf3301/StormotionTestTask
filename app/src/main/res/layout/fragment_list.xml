@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/list_background"
     android:gravity="center"
     tools:context=".ui.list.ListFragment">
 
@@ -10,32 +11,13 @@
         android:id="@+id/recycler_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/list_background"
         tools:listitem="@layout/list_item"
         tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/empty_list_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_list_label"
-        android:textColor="@color/darker_grey"
-        android:textSize="@dimen/extra_font_size"
-        tools:visibility="gone" />
-
-    <TextView
-        android:id="@+id/error_list_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/empty_list_label"
-        android:textColor="@color/darker_grey"
-        android:textSize="@dimen/extra_font_size"
-        tools:visibility="gone" />
 
     <ProgressBar
         android:id="@+id/list_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:visibility="gone"/>
+        tools:visibility="gone" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
