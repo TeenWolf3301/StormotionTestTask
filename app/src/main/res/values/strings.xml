@@ -2,5 +2,6 @@
     <string name="app_name">StormotionTestTask</string>
     <string name="desc_item_image">Item image</string>
     <string name="empty_list_label">Empty list</string>
+    <string name="error_list_label">Something went wrong!</string>
     <string name="settings_menu">Settings</string>
 </resources>

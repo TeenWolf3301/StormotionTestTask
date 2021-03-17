@@ -72,7 +72,7 @@ class DetailsFragment : Fragment() {
                 }
             }
         }
-        APP_ACTIVITY.title = item.title
+        APP_ACTIVITY.supportActionBar?.title = item.title
     }
 
     override fun onDestroyView() {
