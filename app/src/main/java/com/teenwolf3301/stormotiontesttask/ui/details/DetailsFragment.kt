@@ -72,6 +72,16 @@ class DetailsFragment : Fragment() {
             progressVideo.visibility = View.VISIBLE
             detailsVideo.apply {
                 setVideoPath(item.video)
+                setOnTouchListener { v, _ ->
+                    if (detailsVideo.isPlaying) {
+                        v.performClick()
+                        detailsVideo.pause()
+                    } else {
+                        v.performClick()
+                        detailsVideo.start()
+                    }
+                    return@setOnTouchListener false
+                }
                 setOnPreparedListener {
                     start()
                     it.isLooping = true
