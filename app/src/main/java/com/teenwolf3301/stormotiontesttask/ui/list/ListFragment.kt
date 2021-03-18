@@ -11,7 +11,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.teenwolf3301.stormotiontesttask.data.MockarooData
 import com.teenwolf3301.stormotiontesttask.databinding.FragmentListBinding
-import com.teenwolf3301.stormotiontesttask.utility.APP_ACTIVITY
 import com.teenwolf3301.stormotiontesttask.utility.Status
 import dagger.hilt.android.AndroidEntryPoint
 

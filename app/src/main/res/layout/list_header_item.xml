@@ -2,17 +2,17 @@
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/app_extra_margin"
-    android:layout_marginTop="@dimen/app_margin"
-    android:layout_marginEnd="@dimen/app_extra_margin"
-    android:layout_marginBottom="@dimen/app_margin">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/list_item__header"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/darker_grey"
+        android:layout_marginStart="@dimen/app_extra_margin"
+        android:layout_marginTop="@dimen/app_margin"
+        android:layout_marginEnd="@dimen/app_extra_margin"
+        android:layout_marginBottom="@dimen/app_margin"
+        android:textColor="?attr/colorOnBackground"
         android:textSize="@dimen/default_font_size"
         tools:text="Header" />
 
