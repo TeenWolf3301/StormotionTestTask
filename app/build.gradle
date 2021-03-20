@@ -83,4 +83,7 @@ dependencies {
     // Navigation Component
     implementation "androidx.navigation:navigation-fragment-ktx:2.3.4"
     implementation "androidx.navigation:navigation-ui-ktx:2.3.4"
+
+    //Google Mobile Ads
+    implementation 'com.google.android.gms:play-services-ads:19.8.0'
 }

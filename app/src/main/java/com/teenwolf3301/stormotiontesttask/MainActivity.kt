@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
+import com.google.android.gms.ads.MobileAds
 import com.teenwolf3301.stormotiontesttask.databinding.ActivityMainBinding
 import com.teenwolf3301.stormotiontesttask.utility.APP_ACTIVITY
 import dagger.hilt.android.AndroidEntryPoint
@@ -29,6 +30,8 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        MobileAds.initialize(this) {}
     }
 
     override fun onSupportNavigateUp(): Boolean {
