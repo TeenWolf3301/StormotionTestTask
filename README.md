@@ -26,4 +26,6 @@ DarkTheme | LightTheme
 
 ## Summary
 
- It was interesting to work on the app. As a new experience I learned how to use Mockaroo Api. In the application itself I tried to follow MVVM architecture. As part of the task, Google AdMod implemented in [dev](https://github.com/TeenWolf3301/StormotionTestTask/tree/dev) branch with some bugs, and also all data comes in one API request to ListFragment and passed as a Parceble argument to DetailsFragment.
+ It was interesting to work on the app. As a new experience I learned how to use Mockaroo Api. In the application itself I tried to follow MVVM architecture. Also all data comes in one API request to ListFragment and passed as a Parceble argument to DetailsFragment.
+ 
+ As part of the task Google AdMod implemented in [dev](https://github.com/TeenWolf3301/StormotionTestTask/tree/dev) branch with some bugs. (TODO Fix it)
